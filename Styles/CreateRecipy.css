@@ -29,7 +29,7 @@ td{
     text-rendering: auto;
     position: relative;
 }
-input{
+input[type="text"]{
     font-family: "ScheherazadeNew";
     font-size: 20px;
     border-width: 1px;

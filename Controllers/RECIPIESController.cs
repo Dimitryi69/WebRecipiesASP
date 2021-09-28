@@ -124,7 +124,7 @@ namespace CourseWeb.Controllers
         public async Task<ActionResult> Edit(Recipy rECIPIES)
         {
 
-            Recipy res = new Recipy() { Id = (int)rECIPIES.Id, Image = rECIPIES.Image, UserCreator = rECIPIES.UserCreator };
+            Recipy res = new Recipy() { Id = rECIPIES.Id, Image = rECIPIES.Image, UserCreator = rECIPIES.UserCreator };
             res = db.Recipies.Find(rECIPIES.Id);
             res.State = rECIPIES.State;
             res.Name = rECIPIES.Name;

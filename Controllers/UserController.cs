@@ -194,8 +194,14 @@ namespace CourseWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Recipy rECIPIES = await db.Recipies.FindAsync(id);
-            db.Recipies.Remove(rECIPIES);
+            Recipy RecipyRemove = await db.Recipies.FindAsync(id);
+            var compList = new List<Component>();
+            for(int i =0; i< RecipyRemove.ComponentsLink.Count; i++)
+            {
+                compList.Add(db.Components.Find(RecipyRemove.ComponentsLink.ToList()[i].Component.Id));
+            }
+            db.Recipies.Remove(RecipyRemove);
+            db.Components.RemoveRange(compList);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -219,7 +225,5 @@ namespace CourseWeb.Controllers
 
             return RedirectToAction("Index");
         }
-
-
     }
 }

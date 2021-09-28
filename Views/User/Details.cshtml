@@ -6,6 +6,7 @@
 <head>
     <link rel="stylesheet" href="~/Styles/CreateRecipy.css" />
     <link rel="stylesheet" href="~/Styles/DetailsStyle.css" />
+    <link href="~/Styles/RecipyList.css" rel="stylesheet" />
 </head>
 <div class="head-info">
     <div class="head-left">
@@ -38,7 +39,11 @@
                 <b>@Html.DisplayNameFor(model => model.Recipy.UserCreator)</b>: @Html.DisplayFor(model => model.Recipy.UserCreator)
             </div>
             <div>
-                <b>@Html.DisplayNameFor(model => model.Recipy.State)</b>: @Html.DisplayNameFor(model => model.Recipy.State)
+                <b>@Html.DisplayNameFor(model => model.Recipy.State)</b>:
+                @if (Model.Recipy.State == 0)
+                {<span>In Progress</span> }
+                else
+                { <span>Ready</span>}
             </div>
             <div>
                 <b>@Html.DisplayNameFor(model => model.Recipy.Adress)</b>: @Html.DisplayFor(model => model.Recipy.Adress)
@@ -64,18 +69,29 @@
 
             @for (int i = 0; i < Model.Comp.Count; i++)
             {
-        <div style="display:flex;">
+        <div class="check-style">
             @if (Model.Comp.ElementAt(i).isChecked == false)
-            {@Html.CheckBoxFor(model => model.Comp[i].isChecked);
-
-        }
-            @{string k = "Comp_" + i + "__isChecked";}
-            <label for="@k">
+            {@Html.CheckBoxFor(model => model.Comp[i].isChecked, new { id = Html.NameFor(x => x.Comp[i].isChecked), @class = "checkbox" });
+            <label for="@Html.NameFor(x => x.Comp[i].isChecked)">
                 @Html.DisplayFor(model => model.Comp.ElementAt(i).NAME) :
                 @Html.DisplayFor(model => model.Comp.ElementAt(i).VALUE)
             </label>
+        }
+        else
+        {
+            @Html.CheckBoxFor(model => model.Comp[i].isChecked, new { id = Html.NameFor(x => x.Comp[i].isChecked), @class = "checkbox", @checked="off", disabled="on"});
+            <label for="@Html.NameFor(x => x.Comp[i].isChecked)">
+                @Html.DisplayFor(model => model.Comp.ElementAt(i).NAME) :
+                @Html.DisplayFor(model => model.Comp.ElementAt(i).VALUE)
+            </label>
+        }
+        @*<label for="@Html.NameFor(x => x.Comp[i].isChecked)">
+        @Html.DisplayFor(model => model.Comp.ElementAt(i).NAME) :
+        @Html.DisplayFor(model => model.Comp.ElementAt(i).VALUE)
+    </label>*@
 
-            <link href="~/Styles/RecipyList.css" rel="stylesheet" />
+
+
         </div>
                 @Html.HiddenFor(model => model.Comp[i].NAME)
                 @Html.HiddenFor(model => model.Comp[i].VALUE)
@@ -95,11 +111,11 @@
                 @Html.ActionLink("Delete", "Delete", new { id = Model.Recipy.Id })
             </div>
             <div class="submit-block">
-                @Html.ActionLink("Set Ready", "Ready", new { id = Model.Recipy.Id })
+                @Html.ActionLink("Ready", "Ready", new { id = Model.Recipy.Id })
             </div>
         }
         <div class="submit-block">
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back", "Index")
         </div>
     </div>
 </p>
@@ -117,5 +133,24 @@
         for (var i = 0; i < images.length; i++) {
             images[i].style.display = "block";
         }
+        document.getElementById("component-form").onsubmit = function () {
+            var checks = document.querySelectorAll("input[type=checkbox]:not([disabled=on])");
+            let val = false;
+            for (let i = 0; i < checks.length; i++) {
+                if (checks[i].checked) {
+                    val = true;
+                    break;
+                }
+            }
+            if (!val) {
+                alert("Choose atleast one component");
+                return false;
+            }
+            else {
+                alert("Succesfully subscribed!");
+                return true;
+            }
+        }
     }
+
 </script>

@@ -25,6 +25,14 @@ namespace CourseWeb.Models.DBModels
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<Recipy>()
+            .HasMany(c => c.ComponentsLink)
+        .WithRequired(o => o.Recipy)
+        .WillCascadeOnDelete(true);
+            modelBuilder.Entity<Recipy>()
+            .HasMany(c => c.LeftComponentsLink)
+        .WithRequired(o => o.Recipy)
+        .WillCascadeOnDelete(true);
         }
     }
 }

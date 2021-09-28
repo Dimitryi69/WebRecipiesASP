@@ -25,8 +25,8 @@
                     <p>Name: @Html.DisplayFor(modelItem => item.Name)</p>
                     <p>User: @Html.DisplayFor(modelItem => item.UserCreator)</p>
                     <p>
-                        State: @if (item.State == 0) { Html.Display("In Progress"); }
-                        else { Html.Display("Ready"); }
+                        State: @if (item.State == 0) { <span>In Progress</span> }
+                        else { <span>Ready</span>}
                     </p>
                     <p>Adress: @Html.DisplayFor(modelItem => item.Adress)</p>
                     <p>Time: @Html.DisplayFor(modelItem => item.Time)</p>
