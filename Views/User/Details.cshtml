@@ -1,0 +1,121 @@
+﻿@model CourseWeb.Models.SubMode
+
+@{
+    ViewBag.Title = "Details";
+}
+<head>
+    <link rel="stylesheet" href="~/Styles/CreateRecipy.css" />
+    <link rel="stylesheet" href="~/Styles/DetailsStyle.css" />
+</head>
+<div class="head-info">
+    <div class="head-left">
+            @Html.DisplayFor(model => model.Recipy.Name)
+    </div>
+    <div class="head-right">
+        <label for="sub-input"><i class="fa fa-check" aria-hidden="true"></i> Sub</label>
+        <input type="submit" value="Subscribe" form="component-form" id="sub-input" />
+    </div>
+</div>
+
+<div>
+    <hr />
+    <div>
+        <div class="content-block">
+            @{
+                string imgSrc = "undefined";
+                if (Model.Recipy.Image != null)
+                {
+                    var base64 = Convert.ToBase64String(Model.Recipy.Image);
+                    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+            }
+            <img src="@imgSrc" />
+        </div>
+    </div>
+    <div class="info-container">
+        <div class="leftblock">
+            <div>
+                <b>@Html.DisplayNameFor(model => model.Recipy.UserCreator)</b>: @Html.DisplayFor(model => model.Recipy.UserCreator)
+            </div>
+            <div>
+                <b>@Html.DisplayNameFor(model => model.Recipy.State)</b>: @Html.DisplayNameFor(model => model.Recipy.State)
+            </div>
+            <div>
+                <b>@Html.DisplayNameFor(model => model.Recipy.Adress)</b>: @Html.DisplayFor(model => model.Recipy.Adress)
+            </div>
+            <div>
+                <b>@Html.DisplayNameFor(model => model.Recipy.Time)</b>: @Html.DisplayFor(model => model.Recipy.Time)
+            </div>
+
+            @using (Html.BeginForm("Details", "User", FormMethod.Post, new { @id = "component-form" }))
+            {
+                @Html.AntiForgeryToken()
+        <div class="component_container">
+            <label>Components</label>
+            @Html.HiddenFor(model => model.Recipy.Id)
+            @Html.HiddenFor(model => model.Recipy.Name)
+            @Html.HiddenFor(model => model.Recipy.State)
+            @Html.HiddenFor(model => model.Recipy.Time)
+            @Html.HiddenFor(model => model.Recipy.UserCreator)
+            @Html.HiddenFor(model => model.Recipy.Image)
+            @Html.HiddenFor(model => model.Recipy.Adress)
+            @Html.HiddenFor(model => model.Recipy.LeftComponentsLink)
+            @Html.HiddenFor(model => model.Recipy.ComponentsLink)
+
+            @for (int i = 0; i < Model.Comp.Count; i++)
+            {
+        <div style="display:flex;">
+            @if (Model.Comp.ElementAt(i).isChecked == false)
+            {@Html.CheckBoxFor(model => model.Comp[i].isChecked);
+
+        }
+            @{string k = "Comp_" + i + "__isChecked";}
+            <label for="@k">
+                @Html.DisplayFor(model => model.Comp.ElementAt(i).NAME) :
+                @Html.DisplayFor(model => model.Comp.ElementAt(i).VALUE)
+            </label>
+
+            <link href="~/Styles/RecipyList.css" rel="stylesheet" />
+        </div>
+                @Html.HiddenFor(model => model.Comp[i].NAME)
+                @Html.HiddenFor(model => model.Comp[i].VALUE)
+                @Html.HiddenFor(model => model.Comp[i].ID)
+            }
+        </div>  
+            }
+        
+        </div>
+    </div>
+</div>
+<p>
+    <div style="display:flex;">
+        @if (Model.Recipy.UserCreator == Model.User.ID)
+        {
+            <div class="submit-block">
+                @Html.ActionLink("Delete", "Delete", new { id = Model.Recipy.Id })
+            </div>
+            <div class="submit-block">
+                @Html.ActionLink("Set Ready", "Ready", new { id = Model.Recipy.Id })
+            </div>
+        }
+        <div class="submit-block">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</p>
+@if (@ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            $(function () {
+                alert("@ViewBag.Message")
+            });
+    </script>
+}
+<script type="text/javascript">
+    window.onload = function () {
+        var images = document.getElementsByTagName("img");
+        for (var i = 0; i < images.length; i++) {
+            images[i].style.display = "block";
+        }
+    }
+</script>

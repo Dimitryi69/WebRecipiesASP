@@ -1,0 +1,131 @@
+body{
+    font-family: "ScheherazadeNew";
+    
+}
+.form-data-block{
+    font-size: 18px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+}
+.component_container{
+    margin-top: 10px;
+}
+h2{
+    margin-top: 0px;
+}
+td{
+    font-size: 20px;
+}
+.PlusButton{
+    cursor: pointer;
+    background: none;
+    border: none;
+    content: "\f067";
+    display: inline-block;
+
+    font-size: 35px;
+    margin: 10px;
+    text-rendering: auto;
+    position: relative;
+}
+input{
+    font-family: "ScheherazadeNew";
+    font-size: 20px;
+    border-width: 1px;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    outline: none;
+    border-color: rgb(206, 206, 206);
+    transition: border-color 0.5s linear;
+}
+.PlusButton .tooltiptext {
+  display: none;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.548);
+  color: #fff;
+  text-align: center;
+  padding: 5px 5px;
+  border-radius: 6px;
+  margin-left: 5px;
+  vertical-align: center;
+  position: absolute;
+}
+.PlusButton:hover .tooltiptext {
+  display: inline-block;
+}
+.input_class
+{
+    margin-left: 20px;
+    /* margin-top: 5px; */
+}
+.input_class:focus{
+    border-color: #027eff;
+}
+input:focus
+{
+    border-color: #027eff;
+    /* border-width: 0px; */
+}
+.remove-button{
+    display: inline;
+    margin-left:15%;
+    cursor: pointer;
+}
+.submit-btn{
+    font-size: 1em;
+    padding: 5px 10px;
+    color: rgba(8, 8, 8, 0.719);
+    border-radius: 5px;
+    border-width: 0px;
+    cursor: pointer;
+    background-color: rgba(121, 134, 255, 0.411);
+}
+.submit-btn:hover{
+    color: rgb(46, 37, 37);
+    background-color: rgba(115, 129, 247, 0.692);
+}
+.submit-img-btn{
+    margin-left: 25px;
+    cursor:pointer;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 1);
+}
+.submit-img-btn:hover{
+    background-color: rgba(182, 189, 255, 0.411);
+}
+input[type="file"]{
+    display: none;
+}
+.submit-block{
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.submit-block a{
+    text-decoration: none;
+    font-size: 1em;
+    padding: 5px 10px;
+    color: rgba(8, 8, 8, 0.719);
+    border-radius: 5px;
+    border-width: 0px;
+    cursor: pointer;
+    background-color: rgba(121, 134, 255, 0.411);
+}
+.submit-block:hover a{
+    color: rgb(46, 37, 37);
+    background-color: rgba(115, 129, 247, 0.692);
+}
+label{
+    margin-top: 2px;
+}
+.img-block{
+    max-height: 70%;
+    max-width: 70%;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.295);
+}
+.form-data-block[id="imgBlock"]{
+    display: none;
+}

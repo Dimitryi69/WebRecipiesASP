@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CourseWeb.Models.DBModels.ComponentsLink>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IndexComponents</title>
+</head>
+<body>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Component.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Component.Value)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Component.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Component.Value)
+            </td>
+            @*<td>
+                @Html.ActionLink("Delete", "DeleteComponents", new { id=item.ID })
+            </td>*@
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

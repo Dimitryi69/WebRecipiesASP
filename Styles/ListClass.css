@@ -1,0 +1,64 @@
+﻿@font-face {
+    font-family: "ScheherazadeNew";
+    src: url("/Fonts/ScheherazadeNew-Regular.ttf") format("ttf")
+   }
+body {
+    background-color: rgb(236, 236, 236);
+    margin-top: 0px;
+    font-family: "ScheherazadeNew";
+}
+.hdr{
+    margin: 0; 
+    padding: 4px;
+    list-style-type: none;
+    
+}
+.hdr li{
+    padding-left: 20px;
+    display: inline;
+}
+.hdr li a{
+    text-decoration: none;
+    color:rgb(180, 180, 180)
+}
+.hdr li a[id="title"]{
+    text-decoration: none;
+    color:rgb(0, 0, 0);
+    font-size: 25px;
+    font-weight: bold;
+}
+.hdr li a:not([id = "title"]):hover{
+    font-size: 17px;
+    color: red;
+}
+.header-navbar{
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px 0px 5px 5px;
+    padding: 20px 0px 20px 0px;
+
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.295);
+}
+footer{
+  
+  padding:10px;
+
+  bottom: 0%;
+  background-color: white;
+  box-shadow: 0px 0px 3px black;
+}
+.container-body{
+    border-radius: 5px 5px 5px 5px;
+    background-color: rgb(255, 255, 255);
+    margin-top:20px;
+    padding: 20px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.295);
+}
+.main-container{
+    margin-top: 0px;
+
+    margin-left: 20%;
+    margin-right: 20%;
+}
+button[type="button"]{
+    cursor: pointer;
+}

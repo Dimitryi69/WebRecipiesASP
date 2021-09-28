@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CourseWeb.Models.DBModels.Recipy>
+
+@{
+    ViewBag.Title = "Recipy List";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Styles/IndexElements.css" />
+    <link rel="stylesheet" href="~/Styles/CreateRecipy.css" />
+</head>
+    <div class="cont">
+        @foreach (var item in Model)
+        {
+            string imgSrc = "undefined";
+            if (item.Image != null)
+            {
+                var base64 = Convert.ToBase64String(item.Image);
+                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            }
+
+        <div class="item-container">
+            <div class="workspace">
+                <img src="@imgSrc" />
+                <div>
+                    <p>Name: @Html.DisplayFor(modelItem => item.Name)</p>
+                    <p>User: @Html.DisplayFor(modelItem => item.UserCreator)</p>
+                    <p>
+                        State: @if (item.State == 0) { Html.Display("In Progress"); }
+                        else { Html.Display("Ready"); }
+                    </p>
+                    <p>Adress: @Html.DisplayFor(modelItem => item.Adress)</p>
+                    <p>Time: @Html.DisplayFor(modelItem => item.Time)</p>
+                    <div class="details-link">
+                        @Html.ActionLink("Details", "Details", new { id = item.Id})
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+        </div>
+
+        }
+    </div>
+    <a href="@Url.Action("Create", "User")" class="float">
+        <i class="fa fa-plus my-float"></i>
+    </a>
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    @*@if (@ViewBag.Messages != null)
+        {*@
+    @foreach (var item in ViewBag.Messages)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert(@item.Name+"is ready")
+            };
+        </script>
+    }
+<script>
+    window.onload = function () {
+        var images = document.getElementsByTagName("img");
+        for (var i = 0; i < images.length; i++) {
+            images[i].style.display = "block";
+        }
+    }
+</script>
+
+

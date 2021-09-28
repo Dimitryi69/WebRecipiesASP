@@ -1,0 +1,75 @@
+﻿@font-face {
+    font-family: "ScheherazadeNew";
+    src: url("/Fonts/ScheherazadeNew-Regular.ttf") format("ttf")
+   }
+
+.container{
+    border: 1px solid;
+    box-shadow: 0px 0px 5px black;
+    margin: 10% 25% 0% 25%;
+    vertical-align: top;
+}
+body{
+    font-family: "ScheherazadeNew";
+    font-size: 15pt;
+    display: block;
+}
+table {
+    border: 0px solid #ccc;
+    margin-top: 10px;
+}
+table th, table td {
+    padding: 15px;
+    border: 0px solid #ccc;
+}
+th:first-of-type{
+    font-style: italic;
+}
+a{
+    font-size: 14px;
+    text-align: center;
+    display: block;
+}
+a:hover{
+    text-decoration:none;
+}
+a:visited{
+    color: dimgrey;
+}
+.submitButton
+{
+    /* font-weight: 700; */
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 5px;
+    border-width: 0px;
+    transition: background-position 2s;
+    height: 40px;
+    width: 150px;
+    transition: opacity .5s;
+    background: rgb(0,104,247);
+    background: linear-gradient(180deg, rgba(0,104,247,1) 0%, rgba(2,126,255,1) 60%, rgba(0,255,227,1) 100%);
+}
+.submitButton:hover
+{
+    opacity: 0.7; 
+    /* background: rgb(0,247,224);
+background: linear-gradient(180deg, rgba(0,247,224,1) 0%, rgba(114,114,255,1) 28%, rgba(0,73,255,1) 100%); */
+}
+.input_class
+{
+    border-width: 1px;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    outline: none;
+    border-color: rgb(206, 206, 206);
+    transition: border-color 0.5s linear;
+}
+.input_class:focus
+{
+    border-color: #027eff;
+    /* border-width: 0px; */
+}

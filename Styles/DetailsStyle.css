@@ -1,0 +1,55 @@
+﻿.head-info{
+    margin: 10px;
+    display: flex;
+}
+.head-info .head-left{
+    font-size: 25px;
+    font-style: italic;
+}
+.head-info .head-right{
+    margin-left: auto;
+    margin-top: 7px;
+}
+.head-info .head-right input{
+    display: none;
+}
+.head-info .head-right label{
+    
+    font-size: 16px;
+    padding: 5px 10px;
+    background-color: rgba(44, 255, 44, 0.616);
+    border-radius: 10px;
+    cursor: pointer;
+    height: 100%;
+    transition: background-color 0.5s;
+}
+.head-info .head-right label:hover{
+    background-color: rgb(0, 255, 0);
+}
+#component-form{
+    display: block;
+}
+input[type="checkbox"]{
+    display: block;
+}
+.content-block{
+    align-self: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.content-block img{
+    max-width: 60%; 
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    box-shadow: 0ch 0px 3px rgba(0, 0, 0, 0.5);
+}
+.info-container{
+    display: flex;
+}
+.right-block{
+    margin-left: 10%;
+}
+.component-container{
+    font-size: 20px;
+}

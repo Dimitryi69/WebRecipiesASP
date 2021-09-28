@@ -1,0 +1,145 @@
+﻿@model CourseWeb.Models.ListMode
+
+@{
+    ViewBag.Title = "Create";
+}
+<head>
+    <link rel="stylesheet" href="~/Styles/CreateRecipy.css" />
+</head>
+<h2>Add new recipy</h2>
+
+
+@using (Html.BeginForm("Create", "User", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal" id="formcontainer">
+    @Html.ValidationSummary(true, "error", new { @class = "text-danger" })
+    <div class="form-data-block">
+        <label for="Recipy_Name">Name</label>
+        <div class="col-md-10">
+            <input class="input_class" id="Recipy_Name" name="Recipy.Name" type="text" value="">
+            @Html.ValidationMessageFor(model => model.Recipy.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-data-block">
+        <label for="Recipy_Image">Image</label>
+        <div>
+            <label for="Img" class="submit-img-btn">
+                <i class="fas fa-file-upload"></i> Upload Image
+            </label>
+            <input accept="image/*" id="Img" name="Img" type="file" value="" >
+        </div>
+    </div>
+    <div class="form-data-block" id="imgBlock">
+        <img id="chosen_image" class="img-block"/>
+    </div>
+    <div class="form-data-block">
+        <label for="Recipy_Adress">Adress</label>
+        <div class="col-md-10">
+            <input class="input_class" id="Recipy_Adress" name="Recipy.Adress" type="text" value="">
+            @Html.ValidationMessageFor(model => model.Recipy.Adress, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-data-block" >
+        <label for="Recipy_Time">Time</label>
+        <div class="col-md-10">
+            <input class="input_class" id="Recipy_Time" name="Recipy.Time" type="text" value="">
+            @Html.ValidationMessageFor(model => model.Recipy.Time, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div id="components-list" class="form-data-block">
+        <label for="Components">Components:</label>
+        
+    </div>
+    <div class="PlusButton" id="AddComponent">
+        <i class="fa fa-plus"></i>
+        <span class="tooltiptext">Add new component</span>
+    </div>
+    <div class="form-data-block">
+        <div class="submit-block">
+            <input type="submit" value="Submit" class="submit-btn" />
+        </div>
+        <div class="submit-block">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    <script>
+        Img.onchange = function UploadImage(e) {
+            var tgt = e.target,
+                files = tgt.files;
+            if (FileReader && files && files.length) {
+                var fr = new FileReader();
+                fr.onload = function () {
+                    document.getElementById("chosen_image").src = fr.result;
+                    imgBlock.style.display = "block";
+                }
+                fr.readAsDataURL(files[0]);
+            }
+        }
+        var i = 0;
+        var checkarray = Array(20);
+        AddComponent.onclick = function () {
+            if (i < 20) {
+                let divComponent = document.createElement("div");
+                let nameInput = document.createElement("input");
+                let valueInput = document.createElement("input");
+                let removeButton = document.createElement("div");
+                removeButton.innerHTML = "<i class=\"far fa-trash-alt\"></i>";
+                removeButton.classList.add("remove-button");
+                nameInput.type = "text";
+                valueInput.type = "text";
+                valueInput.classList.add("input_class");
+                nameInput.classList.add("input_class");
+                for (let index = 0; index < checkarray.length; index++) {
+                    if (checkarray[index]===undefined) {
+                        divComponent.id = `Component${index}`;
+                        nameInput.name = `Components[${index}].Name`;
+                        valueInput.name = `Components[${index}].Value`;
+                        checkarray[index] = true;
+                        break;
+                    }
+                }
+                nameInput.placeholder = "Name";
+                valueInput.placeholder = "Value";
+                removeButton.onclick = function (e) {
+                    let deleteNode = e.target.parentNode.parentNode;
+                    let ind = parseInt(deleteNode.id.substring(9), 10);
+                    if (ind < i && i>1) {
+                        for (let index = checkarray.length - 1; index >= 0; index--) {
+                            if (checkarray[index] !== undefined) {
+                                let newel = document.getElementById(`Component${index}`)
+                                newel.id = `Component${ind}`;
+                                newel.childNodes[0].name = `Components[${ind}].Name`;
+                                newel.childNodes[1].name = `Components[${ind}].Value`;
+                                checkarray[index] = undefined;
+                                break;
+                            }
+                        }
+                    }
+                    else {
+                        checkarray[parseInt(ind)] = undefined;
+                    }
+                    i--;
+                    
+                    document.getElementById("formcontainer").removeChild(deleteNode);
+                }
+                divComponent.classList.add("component_container")
+                divComponent.appendChild(nameInput);
+                divComponent.appendChild(valueInput);
+                divComponent.appendChild(removeButton);
+                formcontainer.insertBefore(divComponent, AddComponent);
+                i++;
+            }
+            else alert("Maximum of 20 components");
+        }
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
