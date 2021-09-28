@@ -35,7 +35,7 @@ namespace CourseWeb.Controllers
                     }
                 }
             }
-            ViewBag.Messages = res;
+            ViewData["ReadyRecipies"] = res;
             return View(await db.Recipies.ToListAsync());
         }
 
@@ -142,14 +142,23 @@ namespace CourseWeb.Controllers
         public ActionResult Create(ListMode collection)
         {
 
-                byte[] bytes;
-                using (BinaryReader br = new BinaryReader(collection.Img.InputStream))
-                {
-                    bytes = br.ReadBytes(collection.Img.ContentLength);
-                }
-                IEnumerable<Component> selected = collection.Components;
-                collection.Recipy.State = 0;
-                collection.Recipy.Image = bytes;
+            IEnumerable<Component> selected = collection.Components;
+            string ImageName = System.IO.Path.GetFileName(collection.Img.FileName);
+            string index;
+            if (db.Recipies.Count() == 0)
+            {
+                index = "0";
+            }
+            else
+            {
+                index = db.Recipies.LastOrDefault().Id.ToString()+1;
+            }
+            index = "CookingTogether" + index + ImageName;
+            string physicalPath = Server.MapPath("~/images/"+index);
+            collection.Img.SaveAs(physicalPath);
+            collection.Recipy.Image = Path.GetFileName(index);
+            collection.Recipy.State = 0;
+                
                 collection.Recipy.UserCreator = LogController.Current.ID;
                 db.Recipies.Add(collection.Recipy);
                 db.SaveChanges();

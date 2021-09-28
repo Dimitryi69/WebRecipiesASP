@@ -69,14 +69,27 @@ namespace CourseWeb.Controllers
         public ActionResult Create(ListMode collection)
         {
 
-            byte[] bytes;
-            using (BinaryReader br = new BinaryReader(collection.Img.InputStream))
+            //byte[] bytes;
+            //using (BinaryReader br = new BinaryReader(collection.Img.InputStream))
+            //{
+            //    bytes = br.ReadBytes(collection.Img.ContentLength);
+            //}
+            string ImageName = System.IO.Path.GetFileName(collection.Img.FileName);
+            string index;
+            if (db.Recipies.Count() == 0)
             {
-                bytes = br.ReadBytes(collection.Img.ContentLength);
+                index = "0";
             }
+            else
+            {
+                index = db.Recipies.LastOrDefault().Id.ToString() + 1;
+            }
+            index = collection.Recipy.Name + index + ImageName;
+            string physicalPath = Server.MapPath("~/images/" + index);
+            collection.Img.SaveAs(physicalPath);
+            collection.Recipy.Image = Path.GetFileName(index);
             IEnumerable<Component> selected = collection.Components;
             collection.Recipy.State = 0;
-            collection.Recipy.Image = bytes;
             collection.Recipy.UserCreator = LogController.Current.ID;
             db.Recipies.Add(collection.Recipy);
             db.SaveChanges();

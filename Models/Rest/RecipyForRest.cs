@@ -19,7 +19,7 @@ namespace CourseWeb.Models
             USER_CREATOR = res.UserCreator;
             this.STATE = res.State;
             if(res.Image != null)
-            IMAGE = Convert.ToBase64String(res.Image, 0, res.Image.Length); ;
+            IMAGE = res.Image;
             ADRESS = res.Adress;
             TIME = res.Time;
             AllComp = new List<RestAllComponents>();

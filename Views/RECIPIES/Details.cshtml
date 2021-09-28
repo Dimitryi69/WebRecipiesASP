@@ -41,16 +41,16 @@
             </dt>
     
             <dd>
-                @{
+                @*@{
                     string imgSrc = "undefined";
                     if (Model.Image != null)
                     {
                         var base64 = Convert.ToBase64String(Model.Image);
                         imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                     }
-                }
+                }*@
 
-                <img src="@imgSrc" height="140" width="200" />
+                <img src=""~/images/@Model.Image"" height="140" width="200" />
             </dd>
     
             <dt>

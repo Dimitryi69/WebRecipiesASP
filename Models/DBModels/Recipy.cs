@@ -18,7 +18,8 @@ namespace CourseWeb.Models.DBModels
         public string Name { get; set; }
         public int UserCreator { get; set; }
         public int State { get; set; }
-        public byte[] Image { get; set; }
+        //public byte[] Image { get; set; }
+        public string Image { get; set; }
         public string Adress { get; set; }
         public string Time { get; set; }
         public virtual ICollection<ComponentsLink> ComponentsLink { get; set; }

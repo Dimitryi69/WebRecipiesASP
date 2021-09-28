@@ -34,7 +34,8 @@ namespace CourseWeb.Controllers
             {
                 Name = model.NAME,
                 Adress = model.ADRESS,
-                Image = Convert.FromBase64String(model.IMAGE),
+                //Image = Convert.FromBase64String(model.IMAGE),
+                Image = model.IMAGE,
                 UserCreator = model.USER_CREATOR,
                 State = model.STATE,
                 Time = model.TIME
