@@ -184,22 +184,6 @@ namespace CourseWeb.Controllers
 
         }
 
- 
-
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Recipy rECIPIES = await db.Recipies.FindAsync(id);
-            if (rECIPIES == null)
-            {
-                return HttpNotFound();
-            }
-            return View(rECIPIES);
-        }
-
         [HttpPost, ActionName("Delete")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {

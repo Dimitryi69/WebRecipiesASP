@@ -99,9 +99,13 @@
     <div style="display:flex;">
         @if (Model.Recipy.UserCreator == Model.User.ID)
         {
-            <div class="submit-block">
-                @Html.ActionLink("Delete", "Delete", new { id = Model.Recipy.Id })
-            </div>
+        <div class="submit-block">
+            @using (Html.BeginForm("Delete", "User", FormMethod.Post, new { @id = "delete-form" }))
+            {
+                <input type="hidden" value="@Model.Recipy.Id" name="id"/>
+                <input type="submit" value="Delete" class="submit-button-bl" />
+            }
+        </div>
             <div class="submit-block">
                 @Html.ActionLink("Ready", "Ready", new { id = Model.Recipy.Id })
             </div>
@@ -138,6 +142,9 @@
                 alert("Succesfully subscribed!");
                 return true;
             }
+        }
+        document.getElementById("delete-form").onsubmit = function () {
+            return confirm("Delete @Model.Recipy.Name?");
         }
     }
 

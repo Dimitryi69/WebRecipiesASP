@@ -101,3 +101,21 @@
 	left: 3px;
 	color: #cfcfcf;
 }
+.submit-button-bl{
+    font-family: "ScheherazadeNew" ;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 5px 10px;
+    color: rgba(8, 8, 8, 0.719);
+    border-radius: 5px;
+    border-width: 0px;
+    cursor: pointer;
+    background-color: rgba(121, 134, 255, 0.411);
+}
+
+.submit-button-bl:hover {
+    color: rgb(46, 37, 37);
+    background-color: rgba(115, 129, 247, 0.692);
+}
